@@ -1,4 +1,4 @@
-name: Docker Build Images
+name: Docker Build and Push
 
 on:
   workflow_dispatch:
@@ -37,23 +37,3 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ env.URLWATCH_VERSION }}
             ${{ env.IMAGE_NAME }}:latest
           push: true
-
-      - if: ${{ always() }}
-        uses: slackapi/slack-github-action@v2.0.0
-        with:
-          method: chat.postMessage
-          token: ${{ secrets.SLACK_BOT_TOKEN }}
-          payload: |
-            channel: github
-            text: "docker build image result: <https://github.com/${{ github.repository }}|${{ github.repository }}>"
-            attachments:
-            - color: "${{ job.status == 'success' && 'good' || 'danger' }}"
-              fields:
-              - title: "Image"
-                short: true
-                value: "<https://hub.docker.com/r/${{ env.IMAGE_NAME }}|${{ env.IMAGE_NAME }}>"
-              - title: "Status"
-                short: true
-                value: "${{ job.status }}"
-              footer: "Github Actions"
-              footer_icon: "https://github.githubassets.com/favicon.ico"
