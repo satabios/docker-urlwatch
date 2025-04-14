@@ -63,10 +63,11 @@ filter:
 ---
 
 name: Test UTC Time
-url: http://worldtimeapi.org/api/timezone/Etc/UTC
-user_visible_url: http://worldtimeapi.org/api/timezone/Etc/UTC
+url: https://www.timeanddate.com/worldclock/
+user_visible_url: https://www.timeanddate.com/worldclock/
 filter:
-  - jq:
-      query: .datetime
-      # The datetime field is in ISO 8601 format, so we can use a regex to extract the date and time
+  - xpath: '//*[@id="qlook"]/div[1]/div[2]/div[1]/div[1]/span'
+  - re.sub:
+      pattern: 'UTC'
+      repl: ''
 ...
