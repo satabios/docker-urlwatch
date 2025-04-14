@@ -2,11 +2,18 @@ job_defaults:
   url:
     ignore_connection_errors: true
     ignore_http_error_codes: 4xx, 5xx
+    timeout: 180
+    retries: 3
+    retry_wait: 10
   treat_new_as_changed: true
 
 report:
   text:
     footer: false
   discord:
-    webhook_url: https://discord.com/api/webhooks/1361132008969076857/tIr73I0TLtv8BVHsJWv4MYBlEP9Zmd9ckVPva4dECszUb4QoZILiOeXQ9T8YiA2zp-IE
+    webhook_url: "https://discord.com/api/webhooks/1361132008969076857/tIr73I0TLtv8BVHsJWv4MYBlEP9Zmd9ckVPva4dECszUb4QoZILiOeXQ9T8YiA2zp-IE"
     enabled: true
+    markdown: true
+    separator: "\n"
+    max_message_length: 2000
+    report_unchanged: true  # Add this line to report even when no changes

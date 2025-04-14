@@ -1,38 +1,22 @@
 ---
-
-name: Tesla Homepage
-url: https://www.tesla.com/
-user_visible_url: https://www.tesla.com/
+name: BTC-Price
+kind: url
+url: "https://coinmarketcap.com/"
+user_visible_url: "https://coinmarketcap.com/"
+headers:
+  User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+  Accept-Language: "en-US,en;q=0.5"
+  Cache-Control: "no-cache, no-store, must-revalidate"
+  Pragma: "no-cache"
+  Expires: "0"
 filter:
-- html2text: re
-- strip:
-
+  - xpath: '//table[@class="cmc-table"]//tr[1]/td[4]/div/a/span'
+  - css:
+      selector: '.cmc-table tr:first-child td:nth-child(4) div a span'
+      exclude: 'script, style'
+  - html2text
+  - strip
+max_tries: 3
+diff_tool: 0
 ---
-
-name: Tesla Model 3 Design
-url: https://www.tesla.com/model3/design#overview
-user_visible_url: https://www.tesla.com/model3/design#overview
-filter:
-- html2text: re
-- strip:
-
----
-
-name: AMD Ryzen 9 9950X on BestBuy
-url: https://www.bestbuy.com/site/amd-ryzen-9-9950x-16-core-32-thread-4-3-ghz-5-7-ghz-max-boost-socket-am5-unlocked-desktop-processor-silver/6589134.p?skuId=6589134
-user_visible_url: https://www.bestbuy.com/site/amd-ryzen-9-9950x-16-core-32-thread-4-3-ghz-5-7-ghz-max-boost-socket-am5-unlocked-desktop-processor-silver/6589134.p?skuId=6589134
-filter:
-- html2text: re
-- strip:
-
----
-
-name: Test UTC Time
-url: https://www.timeanddate.com/worldclock/
-user_visible_url: https://www.timeanddate.com/worldclock/
-filter:
-  - xpath: '//*[@id="qlook"]/div[1]/div[2]/div[1]/div[1]/span'
-  - re.sub:
-      pattern: 'UTC'
-      repl: ''
-...
