@@ -2,7 +2,7 @@
 # Dockerfile for urlwatch
 #
 
-FROM alpine:3.21
+FROM alpine:latest
 MAINTAINER EasyPi Software Foundation
 
 ARG URLWATCH_VERSION
@@ -50,7 +50,11 @@ RUN set -xe \
                python3-dev \
     && echo '*/30 * * * * cd /root/.urlwatch && urlwatch --urls urls.yaml --config urlwatch.yaml --hooks hooks.py --cache cache.db' | crontab -
 
+# Add the test script
+COPY test-discord.sh /usr/local/bin/test-discord.sh
+RUN chmod +x /usr/local/bin/test-discord.sh
+
 VOLUME /root/.urlwatch
 WORKDIR /root/.urlwatch
 
-CMD ["crond", "-f", "-L", "/dev/stdout"]
+CMD ["/usr/local/bin/test-discord.sh"]
