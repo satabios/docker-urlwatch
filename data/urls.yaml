@@ -60,4 +60,13 @@ filter:
 - html2text: re
 - strip:
 
+---
+
+name: Test UTC Time
+url: http://worldtimeapi.org/api/timezone/Etc/UTC
+user_visible_url: http://worldtimeapi.org/api/timezone/Etc/UTC
+filter:
+  - jq:
+      query: .datetime
+      # The datetime field is in ISO 8601 format, so we can use a regex to extract the date and time
 ...
