@@ -33,4 +33,31 @@ filter:
     pattern: '"'
     repl: ''
 
+---
+
+name: Tesla Homepage
+url: https://www.tesla.com/
+user_visible_url: https://www.tesla.com/
+filter:
+- html2text: re
+- strip:
+
+---
+
+name: Tesla Model 3 Design
+url: https://www.tesla.com/model3/design#overview
+user_visible_url: https://www.tesla.com/model3/design#overview
+filter:
+- html2text: re
+- strip:
+
+---
+
+name: AMD Ryzen 9 9950X on BestBuy
+url: https://www.bestbuy.com/site/amd-ryzen-9-9950x-16-core-32-thread-4-3-ghz-5-7-ghz-max-boost-socket-am5-unlocked-desktop-processor-silver/6589134.p?skuId=6589134
+user_visible_url: https://www.bestbuy.com/site/amd-ryzen-9-9950x-16-core-32-thread-4-3-ghz-5-7-ghz-max-boost-socket-am5-unlocked-desktop-processor-silver/6589134.p?skuId=6589134
+filter:
+- html2text: re
+- strip:
+
 ...
