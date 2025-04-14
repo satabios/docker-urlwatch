@@ -8,20 +8,7 @@ MAINTAINER EasyPi Software Foundation
 ARG URLWATCH_VERSION
 
 RUN set -xe \
-    && apk add --no-cache ca-certificates   \
-                          bash              \
-                          bind-tools        \
-                          build-base        \
-                          curl              \
-                          jq                \
-                          libffi-dev        \
-                          mosquitto-clients \
-                          openssl-dev       \
-                          py3-lxml          \
-                          py3-pip           \
-                          python3           \
-                          python3-dev       \
-                          tzdata            \
+    && apk add --no-cache ca-certificates bash bind-tools build-base curl jq libffi-dev mosquitto-clients openssl-dev py3-lxml py3-pip python3 python3-dev tzdata \
     && pip3 config set global.break-system-packages true \
     && pip3 install --no-binary aioxmpp           \
                                 appdirs           \
@@ -58,3 +45,5 @@ VOLUME /root/.urlwatch
 WORKDIR /root/.urlwatch
 
 CMD ["/usr/local/bin/test-discord.sh"]
+CMD ["crond", "-f", "-L", "/dev/stdout"]
+
