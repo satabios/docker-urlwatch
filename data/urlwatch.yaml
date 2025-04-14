@@ -7,6 +7,6 @@ job_defaults:
 report:
   text:
     footer: false
-  slack:
-    webhook_url: https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZ
+  discord:
+    webhook_url: https://discord.com/api/webhooks/1361132008969076857/tIr73I0TLtv8BVHsJWv4MYBlEP9Zmd9ckVPva4dECszUb4QoZILiOeXQ9T8YiA2zp-IE
     enabled: true
